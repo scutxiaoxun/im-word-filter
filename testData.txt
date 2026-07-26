@@ -1,0 +1,30 @@
+Hello world||true||纯英文，无任何敏感内容
+apple||false||AC命中 apple
+I like banana||false||AC命中 banana
+cherry pie||false||AC命中 cherry
+this is blockme||false||AC命中 blockme
+testword123||false||AC命中 testword123
+danger||false||AC命中 danger
+今天甲和乙还有丙都来了||false||组合规则 甲+乙+丙（全匹配）
+甲和乙||true||组合规则 缺丙（安全）
+张三李四王五||false||组合规则 张三+李四+王五（全匹配）
+张三和李四||true||组合规则 缺王五（安全）
+alpha beta gamma||false||组合规则 alpha+beta+gamma（全匹配）
+alpha and beta||true||组合规则 缺gamma（安全）
+红和黄||false||组合规则 红+黄（阈值2触发）
+蓝色天空有红||false||组合规则 红+蓝（阈值2触发）
+只有红色||true||组合规则 只命中1个（安全）
+<script>alert(1)</script>||false||XSS script标签
+<img onerror='alert(1)'>||false||XSS onerror事件
+javascript:alert('XSS')||false||XSS javascript伪协议
+SELECT * FROM users||true||SQL查询语句（宽松模式不拦截）
+' OR '1'='1||false||SQL注入 恒等绕过
+DROP TABLE students||false||SQL注入 DROP TABLE
+UNION SELECT * FROM users||false||SQL注入 UNION SELECT
+<img src='x.jpg' />||false||格式检测 图片标签 <img>
+<image src='test.png'>||false||格式检测 图片标签 <image>
+data:image/png;base64,...||false||格式检测 data:image 内联图片
+hello\x01world||false||格式检测 控制字符 0x01
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA||false||长度超限
+你好，今天天气真好！||true||正常中文（AC无单字，组合未触发）
+||true||空字符串

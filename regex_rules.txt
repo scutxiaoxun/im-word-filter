@@ -1,0 +1,14 @@
+# ============================================================
+# 正则表达式配置文件（regex_rules.txt）
+# 格式：key = value
+# 注意：等号前后的空格会被自动忽略
+# 支持 # 开头的注释行
+# ============================================================
+# XSS 跨站脚本检测规则
+xss_pattern = (<\s*script|on\w+\s*=|javascript\s*:|<\s*iframe|eval\s*\()
+
+# SQL 严格模式规则（包含 SELECT...FROM）
+sql_pattern = (select\s+\S+\s+from|drop\s+table|union\s+select|--|'\s+or\s+'1'\s*=\s*'1|;\s*--|\bexec\b)
+
+# SQL 宽松模式规则（仅注入特征，不拦截普通 SELECT）
+sql_loose_pattern = (union\s+select|drop\s+table|--|'\s+or\s+'1'\s*=\s*'1|;\s*--|\bexec\b|\bxp_cmdshell\b)

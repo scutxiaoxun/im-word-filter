@@ -1,0 +1,36 @@
+# ============================================================
+# IM 安全过滤系统配置文件（config.txt）
+# 格式：key = value
+# 支持 bool: true/false, yes/no, 1/0
+# 支持 int: 数字
+# 支持 string: 不加引号，如果包含空格请用双引号包裹
+# 以 # 开头的行为注释
+# ============================================================
+
+# ---------- 功能开关 ----------
+enableLengthLimit       = true
+enableFormatCheck       = true
+enableAC                = true
+enableCombinationRule   = true
+enableXSS               = true
+enableSQL               = true
+enableLooseSQLCheck     = true
+
+# ---------- 参数配置 ----------
+maxInputChars           = 100
+maxInputBytes           = 5000
+strictBinaryReject      = true
+
+# ---------- 外部数据源路径 ----------
+sensitiveWordsFolder    = "sensitive_words"
+combinationRulesFolder  = "combination_rules"
+regexRulesFile          = "regex_rules.txt"
+logFilePath             = "security.log"
+
+# ---------- 热更新配置 ----------
+enableHotReload         = true
+hotReloadIntervalSeconds = 30
+
+# ---------- 扫描选项 ----------
+recursiveScan           = false
+fileExtension           = ".txt"
