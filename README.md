@@ -1,8 +1,8 @@
- ###IM 敏感词过滤与安全校验引擎
+ ### IM 敏感词过滤与安全校验引擎
 
 一个文本安全校验系统，专为社交媒体（IM、评论）场景设计。本分支将核心过滤引擎封装为**动态链接库**（Windows `.dll` / Linux `.so`），对外提供 C 语言 API。可被任意支持 C 接口的语言（C++、Python、Java、C# 等）嵌入调用，适用于需要**实时文本安全校验**的各类后端服务、网关、游戏服务器等场景。**
 
-##核心特性
+## 核心特性
 
 基于 AC 自动机（Aho-Corasick）算法，支持万级词库的 `O(N)` 线性扫描。
 支持“A+B+C”逻辑检测（单词单独不违规，组合在一起拦截），与 AC 自动机深度融合，不增加额外遍历开销
@@ -31,7 +31,7 @@
 #define FILTER_ERROR_INTERNAL  -3   // 内部异常
 ```
 
-##快速开始
+## 快速开始
 
 1. 环境要求
 - 支持 C++17 的编译器（如 GCC 8+、Clang 6+）
@@ -46,7 +46,7 @@ Linux:
 g++ -std=c++17 -O2 -Wall -pthread -DBUILD_DLL -fPIC -shared task1_security.cpp filter_sdk.cpp -o libfilter_sdk.so
 高速版编译：如需启用 int next[256] 固定数组存储，在编译命令中添加 -DUSE_FIXED_ARRAY（在-shared前添加）
 
-##词库与规则
+## 词库与规则
 
 敏感词：`sensitive_words/` 下任意 `.txt`，每行一个词。
 组合规则：`combination_rules/` 下任意 `.txt`，支持两种格式：
@@ -55,8 +55,5 @@ g++ -std=c++17 -O2 -Wall -pthread -DBUILD_DLL -fPIC -shared task1_security.cpp f
 
 词库来源：本项目中的敏感词库基于 [konsheng/Sensitive-lexicon](https://github.com/konsheng/Sensitive-lexicon) 开源词库整理，感谢原作者的贡献。如需更新或扩展词库，请参考该项目的使用条款。
 
-##许可证
-本项目采用 MIT License 开源协议。
-
-许可证
+## 许可证
 MIT License
